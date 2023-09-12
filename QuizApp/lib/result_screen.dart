@@ -3,9 +3,11 @@ import 'package:quizapp/data/questions.dart';
 import 'package:quizapp/question_summary.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen({super.key, required this.chosenAnswer});
+  const ResultScreen(
+      {super.key, required this.chosenAnswer, required this.onRestart});
 
   final List<String> chosenAnswer;
+  final void Function() onRestart;
 
   List<Map<String, Object>> getSummearyData() {
     final List<Map<String, Object>> summaryData = [];
@@ -43,13 +45,35 @@ class ResultScreen extends StatelessWidget {
               "You answerd $numCorrectAnswer out of $numTotalQuestion answers correctly!",
               style: const TextStyle(
                 color: Colors.white,
-                fontSize: 17,
+                fontSize: 20,
               ),
             ),
             const SizedBox(height: 30),
             QuestionSummary(getSummearyData()),
-            const SizedBox(height: 30),
-            TextButton(onPressed: () {}, child: const Text("Restart Quiz!"))
+            const SizedBox(height: 40),
+            TextButton.icon(
+              onPressed: onRestart,
+              style: TextButton.styleFrom(
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(8),
+                  ),
+                ),
+                backgroundColor: Colors.purple,
+              ),
+              icon: const Icon(
+                Icons.arrow_circle_right_rounded,
+                size: 35,
+                color: Color.fromARGB(255, 236, 151, 251),
+              ),
+              label: const Text(
+                "Restart Quiz!",
+                style: TextStyle(
+                  color: Color.fromARGB(255, 236, 151, 251),
+                  fontSize: 20,
+                ),
+              ),
+            )
           ],
         ),
       ),
