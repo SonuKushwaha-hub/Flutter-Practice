@@ -1,3 +1,4 @@
+import 'package:expense/widgets/chart/chart.dart';
 import 'package:expense/widgets/expenses_list/expenses_list.dart';
 import 'package:expense/models/expense.dart';
 import 'package:expense/widgets/new_expense.dart';
@@ -91,7 +92,7 @@ class _Expenses extends State<Expenses> {
       ),
       body: Column(
         children: [
-          const Text("The chart"),
+          Chart(expenses: _registeredExpense),
           Expanded(
             child: mainContent,
           )
